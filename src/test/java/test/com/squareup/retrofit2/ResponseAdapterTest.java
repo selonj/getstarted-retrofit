@@ -8,12 +8,14 @@ import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import test.com.squareup.retrofit2.supports.RequestSnapshot;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+import static org.hamcrest.Matchers.any;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -42,6 +44,8 @@ public class ResponseAdapterTest extends AbstractRetrofitTest {
         whenServerRespondAs("{\"name\":\"zhangsan\",\"password\":\"12345\"}");
 
         User user = client.get(USER_ID).execute().body();
+
+        assertArrivedRequestMatching(any(RequestSnapshot.class));
 
         assertThat(user.name, equalTo("zhangsan"));
         assertThat(user.password, equalTo("12345"));

@@ -22,7 +22,7 @@ import static org.junit.Assert.assertThat;
  * Created by Administrator on 2016-03-09.
  */
 public class JettyServerDriver implements ServerDriver {
-    public static final int serverPort = 80;
+    public static final int serverPort = 8888;
     private ServletDriver servletDriver = new ServletDriver();
     private Server server;
 
